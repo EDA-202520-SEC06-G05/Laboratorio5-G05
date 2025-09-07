@@ -186,7 +186,7 @@ def select_sort_algorithm(algo_opt):
         algo_msg = "Seleccionó la configuración - Selection Sort"
     
     # opcion 1: Insertion Sort
-    if algo_opt == 2:
+    elif algo_opt == 2:
         sort_algorithm = 2 
         algo_msg = "Seleccionó la configuración - Insertion Sort"
 
