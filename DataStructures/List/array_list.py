@@ -122,5 +122,14 @@ def sub_list(my_list, pos_i, num_elements):
         return new_sublist
     
 
-def default_sort_criteria (element_1, element_2):
-    return element_1 <=  element_2
+def default_sort_criteria(element_1, element_2):
+    return element_1 <= element_2
+
+def shell_sort(my_list, sort_crit):
+    sort_crit = al.default_sort_criteria()
+    gap = my_list["size"] // 2
+    
+    if (my_list["elements"] == None) or (my_list["size"] == 1):
+        return my_list
+    else:
+        for i in my_list[]
