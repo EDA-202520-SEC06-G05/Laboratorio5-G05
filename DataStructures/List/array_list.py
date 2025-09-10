@@ -120,3 +120,7 @@ def sub_list(my_list, pos_i, num_elements):
             "size" : num_elements
             }
         return new_sublist
+    
+
+def default_sort_criteria (element_1, element_2):
+    return element_1 <=  element_2
