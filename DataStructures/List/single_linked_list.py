@@ -1,4 +1,5 @@
 from DataStructures.List import list_node as nd
+from DataStructures.List import single_linked_list as sl
 
 def new_list():
     newlist = {
@@ -227,3 +228,59 @@ def sub_list(my_list, pos, num_elements ):
             elements = elements["next"]
             num_elements -= 1
     return new
+
+def default_sort_criteria(element1, element2):
+    return element1 <= element2
+
+def selection_sort(my_list, sort_criteria):
+    
+    if my_list["first"] is None or my_list["size"]<=1:
+        return my_list
+    else:
+        current = my_list["first"]
+        while current is not None:
+            min_node = current
+            siguien = current["next"]
+            while siguien is not None:
+                if not sl.default_sort_criteria(min_node["info"], siguien["info"]):
+                    min_node = siguien
+                siguien = siguien["next"]
+            
+            if min_node is not siguien:
+                current["info"], min_node["info"] = min_node["info"], current["info"]
+            
+            current = current["next"]
+        return my_list
+
+def insertion_sort(my_list, sort_criteria):
+    
+    
+    if my_list["first"] is None or my_list["first"]["next"]:
+        return my_list
+       
+    sort_head = None
+    current = my_list["first"]
+    while current is not None:
+        next_node = current["next"]
+             
+        if sort_head is None or not sl.default_sort_criteria(sort_criteria["info"], current["info"]):
+            current["next"] = sort_head
+            sort_head = current
+        else:
+            search = sort_head
+            while search["next"] is not None and sl.default_sort_criteria(search["next"]["info"], current["info"]):
+                search = search["next"]
+                current["next"] = search["next"]
+                search["next"] = current
+        current = next_node
+    my_list["first"] = sort_head
+    last_node = sort_head
+    while last_node["next"] is not None:
+        last_node = last_node["next"]
+    my_list["last"] = last_node
+    
+    return my_list
+
+                    
+                 
+                              

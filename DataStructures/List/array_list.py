@@ -125,11 +125,50 @@ def sub_list(my_list, pos_i, num_elements):
 def default_sort_criteria(element_1, element_2):
     return element_1 <= element_2
 
+def selection_sort(my_list, sort_crit):
+    elements = my_list["elements"]
+    
+    for i in range(0, my_list["size"]-2):
+        min_idx = i
+        for j in range(i+1, my_list["size"]-1):
+            if not al.default_sort_criteria(elements[min_idx], elements[j]):
+                min_idx = j
+            elements[i], elements[min_idx] = elements[min_idx], elements[i]
+    return my_list
+
+def insertion_sort(my_list, sort_crit):
+    
+    elements = my_list["elements"]
+    
+    for i in range(1, my_list["size"]):
+        key = elements[i]
+        j = i - 1
+        while j >= 0 and not al.default_sort_criteria(elements[j],key):
+            elements[j+1] = elements[j]
+            j -= 1
+        elements[j+1] = key
+    return my_list    
+    
+    
 def shell_sort(my_list, sort_crit):
-    sort_crit = al.default_sort_criteria()
+    
+    
     gap = my_list["size"] // 2
+    elements = my_list["elements"]
     
     if (my_list["elements"] == None) or (my_list["size"] == 1):
         return my_list
     else:
-        for i in my_list[]
+        while gap > 0:
+            for i in range(gap, my_list["size"]):
+                tempo = elements[i]
+                j = i
+                while j >= gap and not al.default_sort_criteria(elements[j - gap], tempo):
+                    elements[j] = elements[j - gap]
+                    j -= gap
+                elements[j] = tempo
+            gap //= 2
+            
+        return my_list
+
+            
