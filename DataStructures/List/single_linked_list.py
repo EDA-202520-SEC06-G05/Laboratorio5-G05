@@ -281,6 +281,6 @@ def insertion_sort(my_list, sort_criteria):
     
     return my_list
 
-                    
-                 
-                              
+def merge_sort(my_list, sort_crit):                    
+    #Terminar             
+    pass                         
