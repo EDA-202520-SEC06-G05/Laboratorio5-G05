@@ -171,4 +171,25 @@ def shell_sort(my_list, sort_crit):
             
         return my_list
 
+def quick_sort(my_list, sort_crit):
+    if my_list["elements"] == None or my_list["size"] == 1:
+        return my_list
+    else:
+        stack = [(0, my_list["size"]-1)]
+        while stack:
+            low, high = stack.pop()
             
+            if low < high:
+                pivot = my_list[high]
+                i = low -1
+                for j in range(low, high):
+                    if sort_crit(my_list[j], pivot):
+                        i += 1
+                        my_list[i], my_list[j] = my_list[j], my_list[i]
+                my_list[i + 1], my_list[high] = my_list[high], my_list[i + 1]
+                pi = i + 1
+                
+                stack.append((low, pi -1))
+                stack.append((pi +1, high))
+                
+        return my_list
