@@ -39,7 +39,6 @@ def is_present(my_list, element, cmp_function):
 def size(my_list):
     return my_list["size"]
 
-
 def first_element(my_list):
     if my_list["elements"] != None:
         first_element = my_list["elements"][0]

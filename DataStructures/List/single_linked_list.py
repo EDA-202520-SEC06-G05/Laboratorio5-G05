@@ -257,12 +257,11 @@ def insertion_sort(my_list, sort_criteria):
     
     if my_list["first"] is None or my_list["first"]["next"]:
         return my_list
-       
     sort_head = None
     current = my_list["first"]
     while current is not None:
         next_node = current["next"]
-             
+            
         if sort_head is None or not sl.default_sort_criteria(sort_criteria["info"], current["info"]):
             current["next"] = sort_head
             sort_head = current
@@ -281,6 +280,8 @@ def insertion_sort(my_list, sort_criteria):
     
     return my_list
 
+
 def merge_sort(my_list, sort_crit):                    
-    #Terminar             
+    #Terminar
+                
     pass                         
