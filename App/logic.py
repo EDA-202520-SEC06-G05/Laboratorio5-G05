@@ -54,10 +54,11 @@ def new_logic(user_data_structure):
     else:
         data_structure = lt
 
-    catalog = {"books": None,
-               "authors": None,
-               "tags": None,
-               "book_tags": None}
+    catalog = {
+        "books": None,
+        "authors": None,
+        "tags": None,
+        "book_tags": None}
 
     # Usamos la estructura seleccionada para inicializar todas las listas
     # TODO: completar la creacion de la lista de autores y tags
@@ -334,6 +335,7 @@ def compare_book_ids(id, book):
 
 def eval_ratings(book1, book2):
     # TODO: completar la función para comparar dos libros por su rating promedio, el libro 1 debe ser mayor al 2.
+    
     pass
 
 #  -----------------------------------------------
@@ -416,8 +418,11 @@ def add_book_tag(catalog, book_tag):
     """
     Adiciona un tag a la lista de tags
     """
-    t = new_book_tag(book_tag['tag_id'],
-                     book_tag['goodreads_book_id'], book_tag['count'])
+    t = new_book_tag(
+        book_tag['tag_id'],
+        book_tag['goodreads_book_id'],
+        book_tag['count'])
+    
     data_structure.add_last(catalog['book_tags'], t)
     return catalog
 
