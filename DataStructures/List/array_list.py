@@ -125,7 +125,7 @@ def sub_list(my_list, pos_i, num_elements):
 def default_sort_criteria(element_1, element_2):
     return element_1 <= element_2
 
-def selection_sort(my_list):
+def selection_sort(my_list, sort_crit):
     elements = my_list["elements"]
     
     for i in range(0, my_list["size"]-2):
@@ -136,7 +136,7 @@ def selection_sort(my_list):
             elements[i], elements[min_idx] = elements[min_idx], elements[i]
     return my_list
 
-def insertion_sort(my_list):
+def insertion_sort(my_list, sort_crit):
     
     elements = my_list["elements"]
     
@@ -150,9 +150,8 @@ def insertion_sort(my_list):
     return my_list    
     
     
-def shell_sort(my_list):
-    
-    
+def shell_sort(my_list, sort_crit):
+ 
     gap = my_list["size"] // 2
     elements = my_list["elements"]
     
@@ -171,8 +170,8 @@ def shell_sort(my_list):
             
         return my_list
     
-def merge_sort(my_list):
-    if my_list["elements"] == None or my_list["size"] == 1:
+def merge_sort(my_list, sort_crit):
+    if my_list["size"] <= 1:
         return my_list
     else:
         mid = my_list["size"] // 2
@@ -184,8 +183,8 @@ def merge_sort(my_list):
         for i in range(mid, my_list["size"]):
             add_last(right, my_list["elements"][i])
         
-        merge_sort(left, al.default_sort_criteria())
-        merge_sort(right, al.default_sort_criteria())
+        merge_sort(left, al.default_sort_criteria)
+        merge_sort(right, al.default_sort_criteria)
         
         i = 0
         j = 0
@@ -210,25 +209,28 @@ def merge_sort(my_list):
         
         return my_list
 
-def quick_sort(my_list):
-    if my_list["elements"] == None or my_list["size"] == 1:
+def quick_sort(my_list, sort_crit):
+    if my_list["size"] <= 1:
         return my_list
     else:
-        stack = [(0, my_list["size"]-1)]
-        while stack:
-            low, high = stack.pop()
-            
-            if low < high:
-                pivot = my_list[high]
-                i = low -1
-                for j in range(low, high):
-                    if al.default_sort_criteria(my_list[j], pivot):
-                        i += 1
-                        my_list[i], my_list[j] = my_list[j], my_list[i]
-                my_list[i + 1], my_list[high] = my_list[high], my_list[i + 1]
-                pi = i + 1
-                
-                stack.append((low, pi -1))
-                stack.append((pi +1, high))
-                
-        return my_list
+        pivot = my_list["elements"][-1]
+        left = new_list()
+        right = new_list()
+        
+        for i in range (my_list["size"]-1):
+            elem = my_list["elements"][i]
+            if al.default_sort_criteria(elem, pivot):
+                add_last(left, elem)
+            else:
+                add_last(right, elem)
+        sorted_left = quick_sort(left,al.default_sort_criteria)
+        sorted_right = quick_sort(right, al.default_sort_criteria)
+        
+        result = new_list()
+        for e in sorted_left["elements"]:
+            add_last(result, e)
+        add_last(result, pivot)
+        for e in sorted_right["elements"]:
+            add_last(result, e)
+   
+        return result
