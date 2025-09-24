@@ -48,6 +48,7 @@ def new_logic(user_data_structure):
     todos los libros, autores, géneros y la asociación de géneros y libros,
     utilizando la estructura de datos seleccionada.
     """
+    
     global data_structure
     if user_data_structure == "1":
         data_structure = al
@@ -334,10 +335,8 @@ def compare_book_ids(id, book):
 
 
 def eval_ratings(book1, book2):
-    
     # TODO: completar la función para comparar dos libros por su rating promedio, el libro 1 debe ser mayor al 2.
-    
-    pass
+    return book1["average_rating"] > book2["average_rating"]
 
 #  -----------------------------------------------
 # Funciones de ordenamiento
@@ -352,19 +351,19 @@ def sort_books(catalog):
     # TODO: cambie el None para completar las opciones para selection_sort, insertion_sort, shell_sort, merge_sort y quick_sort 
 
     if sort_algorithm == 1:
-        sorted_books_s = al.selection_sort()
+        sorted_books_s = data_structure.selection_sort(sorted_books, eval_ratings)
 
     elif sort_algorithm == 2:
-        sorted_books_s = al.insertion_sort()
+        sorted_books_s = data_structure.insertion_sort(sorted_books, eval_ratings)
 
     elif sort_algorithm == 3:
-        sorted_books_s = al.shell_sort()
+        sorted_books_s = data_structure.shell_sort(sorted_books, eval_ratings)
 
     elif sort_algorithm == 4:
-        sorted_books_s = al.merge_sort()
+        sorted_books_s = data_structure.merge_sort(sorted_books, eval_ratings)
 
     elif sort_algorithm == 5:
-        sorted_books_s = al.quick_sort()
+        sorted_books_s = data_structure.quick_sort(sorted_books, eval_ratings)
 
     end_time = get_time()
     delta = delta_time(start_time, end_time)

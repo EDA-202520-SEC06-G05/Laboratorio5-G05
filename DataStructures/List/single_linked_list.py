@@ -242,7 +242,7 @@ def selection_sort(my_list, sort_criteria):
             min_node = current
             siguien = current["next"]
             while siguien is not None:
-                if not sl.default_sort_criteria(min_node["info"], siguien["info"]):
+                if not sort_criteria(min_node["info"], siguien["info"]):
                     min_node = siguien
                 siguien = siguien["next"]
             
@@ -262,12 +262,12 @@ def insertion_sort(my_list, sort_criteria):
     while current is not None:
         next_node = current["next"]
             
-        if sort_head is None or not sl.default_sort_criteria(sort_criteria["info"], current["info"]):
+        if sort_head is None or not sort_criteria(sort_criteria["info"], current["info"]):
             current["next"] = sort_head
             sort_head = current
         else:
             search = sort_head
-            while search["next"] is not None and sl.default_sort_criteria(search["next"]["info"], current["info"]):
+            while search["next"] is not None and sort_criteria(search["next"]["info"], current["info"]):
                 search = search["next"]
                 current["next"] = search["next"]
                 search["next"] = current
@@ -284,4 +284,7 @@ def insertion_sort(my_list, sort_criteria):
 def merge_sort(my_list, sort_crit):                    
     #Terminar
                 
-    pass                         
+    pass
+
+
+

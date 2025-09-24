@@ -126,13 +126,15 @@ def default_sort_criteria(element_1, element_2):
 
 def selection_sort(my_list, sort_crit):
     elements = my_list["elements"]
-    
-    for i in range(0, my_list["size"]-2):
+    size = my_list["size"]
+
+    for i in range(size - 1):
         min_idx = i
-        for j in range(i+1, my_list["size"]-1):
-            if not al.default_sort_criteria(elements[min_idx], elements[j]):
+        for j in range(i + 1, size):
+            if not sort_crit(elements[min_idx], elements[j]):
                 min_idx = j
-            elements[i], elements[min_idx] = elements[min_idx], elements[i]
+        elements[i], elements[min_idx] = elements[min_idx], elements[i]
+
     return my_list
 
 def insertion_sort(my_list, sort_crit):
@@ -142,7 +144,7 @@ def insertion_sort(my_list, sort_crit):
     for i in range(1, my_list["size"]):
         key = elements[i]
         j = i - 1
-        while j >= 0 and not al.default_sort_criteria(elements[j],key):
+        while j >= 0 and not sort_crit(elements[j],key):
             elements[j+1] = elements[j]
             j -= 1
         elements[j+1] = key
@@ -161,7 +163,7 @@ def shell_sort(my_list, sort_crit):
             for i in range(gap, my_list["size"]):
                 tempo = elements[i]
                 j = i
-                while j >= gap and not al.default_sort_criteria(elements[j - gap], tempo):
+                while j >= gap and not sort_crit(elements[j - gap], tempo):
                     elements[j] = elements[j - gap]
                     j -= gap
                 elements[j] = tempo
@@ -182,15 +184,15 @@ def merge_sort(my_list, sort_crit):
         for i in range(mid, my_list["size"]):
             add_last(right, my_list["elements"][i])
         
-        merge_sort(left, al.default_sort_criteria)
-        merge_sort(right, al.default_sort_criteria)
+        merge_sort(left, sort_crit)
+        merge_sort(right, sort_crit)
         
         i = 0
         j = 0
         
         temp = new_list()
         while i < left["size"] and j < right["size"]:
-            if al.default_sort_criteria(left["elements"][i], right["elements"][j]):
+            if sort_crit(left["elements"][i], right["elements"][j]):
                 add_last(temp, left["elements"][i])
                 i += 1
             else:
@@ -218,12 +220,12 @@ def quick_sort(my_list, sort_crit):
         
         for i in range (my_list["size"]-1):
             elem = my_list["elements"][i]
-            if al.default_sort_criteria(elem, pivot):
+            if sort_crit(elem, pivot):
                 add_last(left, elem)
             else:
                 add_last(right, elem)
-        sorted_left = quick_sort(left,al.default_sort_criteria)
-        sorted_right = quick_sort(right, al.default_sort_criteria)
+        sorted_left = quick_sort(left, sort_crit)
+        sorted_right = quick_sort(right, sort_crit)
         
         result = new_list()
         for e in sorted_left["elements"]:
